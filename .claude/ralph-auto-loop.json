@@ -1,0 +1,8 @@
+{
+  "iteration": 1,
+  "max_iter": 5,
+  "stagnation_count": 0,
+  "stagnation_limit": 3,
+  "completion_promise": "RALPH_DONE",
+  "started_at": "2026-02-13T16:15:12Z"
+}
