@@ -6,8 +6,8 @@ EC2 환경에 OpenClaw를 설치해서 사용해보는 모든 과정을 문서�
 
 ## Ralph Loop 상태
 
-- **현재 Iteration**: 1/5 (완료)
-- **단계**: 정보 수집 완료, 교육 콘텐츠 작성 시작
+- **현재 Iteration**: 4/5
+- **단계**: 전체 10장 문서 완성, 비개발자 검토 및 최종 정리 중
 
 ---
 
@@ -177,28 +177,27 @@ WhatsApp / Telegram / Slack / Discord / Signal / iMessage / WebChat
 - [x] GitHub 저장소 조사
 - [x] EC2 사양 결정
 - [x] 교육 콘텐츠 목차 초안 작성
+- [x] 01~04장 초안 작성
 
-### Iteration 2: 핵심 콘텐츠 작성 (01~04장)
-- OpenClaw 소개
-- EC2 인스턴스 생성 가이드
-- 서버 환경 설정
-- OpenClaw 설치 가이드
+### Iteration 2: 확장 콘텐츠 작성 (05~07장) ✅
+- [x] 05장: 외부 접속 설정 (Tailscale, Nginx, SSH 터널)
+- [x] 06장: 채널 연결 (Telegram, Discord, WhatsApp)
+- [x] 07장: 기본 사용법
 
-### Iteration 3: 확장 콘텐츠 작성 (05~07장)
-- 외부 접속 설정
-- 채널 연결 가이드
-- 기본 사용법
+### Iteration 3: 운영/부록 (08~10장) ✅
+- [x] 08장: 운영 및 관리
+- [x] 09장: 트러블슈팅
+- [x] 10장: 부록
 
-### Iteration 4: 운영/부록 + Notion 구성 (08~10장)
-- 운영 및 관리
-- 트러블슈팅
-- 부록
-- Notion 페이지 구성
+### Iteration 4: README + 비개발자 검토 + context 업데이트 ✅
+- [x] README.md 작성
+- [x] 비개발자 시점 검토
+- [x] context.md 최종 업데이트
 
-### Iteration 5: 최종 검토 및 완료
-- 전체 문서 리뷰
-- 비개발자 시점 검토
-- 공유 가능 상태 확인
+### Iteration 5: 최종 검토 및 Notion 구성
+- [ ] 전체 문서 최종 리뷰
+- [ ] Notion 페이지 구성
+- [ ] 공유 가능 상태 확인
 
 ---
 
