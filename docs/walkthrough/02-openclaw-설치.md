@@ -1,5 +1,24 @@
 # 02. OpenClaw 설치 및 Slack 연동
 
+## 목차
+
+- [1단계: EC2에 OpenClaw 설치](#1단계-ec2에-openclaw-설치)
+- [2단계: 온보딩 위자드](#2단계-온보딩-위자드)
+- [3단계: Slack 앱 생성](#3단계-slack-앱-생성)
+- [4단계: 슬래시 명령어 변경](#4단계-슬래시-명령어-변경-충돌-해결)
+- [5단계: 앱 설치 (Bot Token 발급)](#5단계-앱-설치-bot-token-발급)
+- [6단계: App-Level Token 생성](#6단계-app-level-token-생성-socket-mode용)
+- [7단계: 온보딩 위자드에 토큰 입력](#7단계-온보딩-위자드에-토큰-입력)
+- [8단계: 채널 접근 설정](#8단계-채널-접근-설정)
+- [9단계: Hooks 설정](#9단계-hooks-설정)
+- [10단계: AI 모델 인증](#10단계-ai-모델-인증-구독-계정-oauth)
+- [11단계: Gateway 시작](#11단계-gateway-시작)
+- [12단계: Slack 메시지 테스트](#12단계-slack-메시지-테스트)
+- [13단계: Dashboard 접속](#13단계-dashboard-접속)
+- [트러블슈팅 요약](#트러블슈팅-요약)
+
+---
+
 ## 참고 문서
 
 | 문서 | URL | 내용 |
@@ -19,10 +38,14 @@
 
 ## 1단계: EC2에 OpenClaw 설치
 
+> **참고**: [01-ec2-생성.md](./01-ec2-생성.md)의 Terraform으로 EC2를 생성했다면 OpenClaw이 **자동 설치**되어 있다. `openclaw --version`으로 확인하고, 이미 설치되었으면 **2단계: 온보딩 위자드**로 건너뛴다.
+
 ### EC2 접속
 
+> **실행 위치**: 로컬 PC
+
 ```bash
-ssh -i ~/.ssh/glen-openclaw.pem ubuntu@<EC2_ELASTIC_IP>
+ssh -i ~/.ssh/<키페어-이름>.pem ubuntu@<EC2_ELASTIC_IP>
 ```
 
 - 인스턴스: t3.medium, Ubuntu 22.04 LTS
@@ -30,6 +53,8 @@ ssh -i ~/.ssh/glen-openclaw.pem ubuntu@<EC2_ELASTIC_IP>
 - EC2 생성 과정은 [01-ec2-생성.md](./01-ec2-생성.md) 참고
 
 ### 설치 스크립트 실행
+
+> **실행 위치**: EC2 서버
 
 공식 문서에서 권장하는 원라인 설치 스크립트를 사용한다.
 
@@ -421,7 +446,9 @@ OpenClaw는 Anthropic API 키 대신 **구독 계정(Pro/Max)**의 OAuth 토큰�
 
 ### 10-1. Claude Code에서 Setup Token 생성
 
-Claude Code CLI가 설치된 로컬 머신에서 장기 인증 토큰을 발급한다:
+> **실행 위치**: 로컬 PC (Claude Code CLI가 설치된 환경)
+
+Claude Code CLI가 설치된 로컬 머신에서 장기 인증 토큰을 발급한다. Claude Code CLI가 없다면 먼저 설치한다: `npm install -g @anthropic-ai/claude-code`
 
 ```bash
 claude setup-token
@@ -443,6 +470,8 @@ Use this token by setting: export CLAUDE_CODE_OAUTH_TOKEN=<token>
 ```
 
 ### 10-2. EC2의 OpenClaw에 토큰 등록
+
+> **실행 위치**: EC2 서버
 
 발급받은 토큰을 OpenClaw 설정에 등록한다:
 
@@ -630,10 +659,12 @@ scope 추가 및 Gateway 재시작 후, Slack DM에서 봇이 정상 응답하�
 
 ### 13-1. SSH 터널 설정
 
+> **실행 위치**: 로컬 PC
+
 Gateway는 loopback(127.0.0.1)에만 바인딩되어 있어 외부에서 직접 접근이 불가하다. SSH 포트포워딩을 사용한다:
 
 ```bash
-ssh -i ~/.ssh/glen-openclaw.pem -L 18789:127.0.0.1:18789 ubuntu@<EC2_ELASTIC_IP> -N
+ssh -i ~/.ssh/<키페어-이름>.pem -L 18789:127.0.0.1:18789 ubuntu@<EC2_ELASTIC_IP> -N
 ```
 
 ### 13-2. 브라우저에서 접속
@@ -665,16 +696,7 @@ disconnected (1008): unauthorized: gateway token missing
 
 ### 13-4. Dashboard 탭
 
-| 탭 | 용도 |
-|------|------|
-| Chat | Gateway 직접 대화 |
-| Overview | 시스템 상태 요약 |
-| Channels | Slack 등 채널 상태 |
-| Instances | 실행 중인 에이전트 |
-| Sessions | 대화 세션 목록 |
-| Usage | 토큰 사용량 |
-| Cron Jobs | 예약 작업 |
-| Agents | 에이전트 관리 |
+대시보드는 8개 탭(Chat, Overview, Channels, Instances, Sessions, Usage, Cron Jobs, Agents)으로 구성되어 있다. 각 탭의 상세 설명은 [03-대시보드-가이드.md](./03-대시보드-가이드.md)를 참고한다.
 
 ---
 
