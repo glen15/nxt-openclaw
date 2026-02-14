@@ -22,11 +22,11 @@
 ### EC2 접속
 
 ```bash
-ssh -i ~/.ssh/glen-openclaw.pem ubuntu@43.202.19.93
+ssh -i ~/.ssh/glen-openclaw.pem ubuntu@<EC2_ELASTIC_IP>
 ```
 
 - 인스턴스: t3.medium, Ubuntu 22.04 LTS
-- Elastic IP: 43.202.19.93
+- Elastic IP: <EC2_ELASTIC_IP>
 - EC2 생성 과정은 [01-ec2-생성.md](./01-ec2-생성.md) 참고
 
 ### 설치 스크립트 실행
@@ -230,7 +230,7 @@ JSON 탭에서 기본 내용을 지우고, 아래 매니페스트를 붙여넣�
 
 ![Basic Information — App Credentials](../../screenshots/06-slack-basic-information.png)
 
-- **App ID**: A0AEXNTN0NR
+- **App ID**: <APP_ID>
 - **생성일**: February 14, 2026
 
 > **보안**: Client Secret, Signing Secret은 절대 외부에 노출하지 않는다.
@@ -355,13 +355,13 @@ EC2 온보딩 위자드로 돌아가 발급받은 토큰을 입력한다:
 허용할 채널의 ID를 입력한다. Slack에서 채널 ID를 확인하는 방법:
 
 1. 채널 이름 클릭 → 채널 상세정보 열기
-2. 하단에 **Channel ID** 표시됨 (예: `C0AEKPZSBL7`)
+2. 하단에 **Channel ID** 표시됨 (예: `<CHANNEL_ID>`)
 
 ![채널 ID 확인 방법](../../screenshots/15-slack-channel-id.png)
 
 ```
 ◇  Allowed channel IDs (comma-separated)
-│  C0AEKPZSBL7
+│  <CHANNEL_ID>
 ```
 
 > **참고**: `missing_scope` 경고가 표시될 수 있으나, 채널 ID는 정상적으로 등록된다.
@@ -542,7 +542,7 @@ openclaw doctor --fix
 | AI 인증 | OAuth 토큰 (구독 계정) |
 | Slack 모드 | Socket Mode |
 | 채널 정책 | Allowlist |
-| 허용 채널 | C0AEKPZSBL7 |
+| 허용 채널 | <CHANNEL_ID> |
 | Hooks | boot-md, bootstrap-extra-files, command-logger |
 | Gateway 서비스 | systemd (enabled) |
 
@@ -581,20 +581,20 @@ Slack에서 **nxt-openclaw** 앱을 찾아 DM을 보낸다.
 
 ```
 OpenClaw: access not configured.
-Your Slack user id: U05JLKA5FLG
-Pairing code: MQGNZBGG
+Your Slack user id: <USER_ID>
+Pairing code: <PAIRING_CODE>
 Ask the bot owner to approve with:
-  openclaw pairing approve slack MQGNZBGG
+  openclaw pairing approve slack <PAIRING_CODE>
 ```
 
 OpenClaw는 보안상 DM 사용자를 사전 승인(pairing)해야 한다. EC2에서 승인:
 
 ```bash
-openclaw pairing approve slack MQGNZBGG
+openclaw pairing approve slack <PAIRING_CODE>
 ```
 
 ```
-Approved slack sender U05JLKA5FLG.
+Approved slack sender <USER_ID>.
 ```
 
 ### 12-4. 문제: 응답 실패 (`missing_scope`)
@@ -633,7 +633,7 @@ scope 추가 및 Gateway 재시작 후, Slack DM에서 봇이 정상 응답하�
 Gateway는 loopback(127.0.0.1)에만 바인딩되어 있어 외부에서 직접 접근이 불가하다. SSH 포트포워딩을 사용한다:
 
 ```bash
-ssh -i ~/.ssh/glen-openclaw.pem -L 18789:127.0.0.1:18789 ubuntu@43.202.19.93 -N
+ssh -i ~/.ssh/glen-openclaw.pem -L 18789:127.0.0.1:18789 ubuntu@<EC2_ELASTIC_IP> -N
 ```
 
 ### 13-2. 브라우저에서 접속
