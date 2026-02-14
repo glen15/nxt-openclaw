@@ -1,4 +1,5 @@
 .claude/
+.DS_Store
 
 # Terraform
 terraform/.terraform/
