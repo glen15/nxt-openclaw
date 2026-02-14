@@ -12,16 +12,10 @@ EC2 환경에 [OpenClaw](https://openclaw.ai/)를 설치하고 사용하는 과�
 
 | 장 | 제목 | 내용 |
 |----|------|------|
-| [01](docs/01-openclaw-소개.md) | OpenClaw 소개 | OpenClaw란? 왜 EC2에 설치하나? |
-| [02](docs/02-ec2-인스턴스-생성.md) | EC2 인스턴스 생성 | AWS 콘솔에서 서버 만들기 |
-| [03](docs/03-서버-환경-설정.md) | 서버 환경 설정 | Node.js, 스왑 등 사전 준비 |
-| [04](docs/04-openclaw-설치.md) | OpenClaw 설치 | 설치, 온보딩, Gateway 시작 |
-| [05](docs/05-외부-접속-설정.md) | 외부 접속 설정 | Tailscale, Nginx, SSH 터널 |
-| [06](docs/06-채널-연결.md) | 채널 연결 | Telegram, Discord, WhatsApp |
-| [07](docs/07-기본-사용법.md) | 기본 사용법 | 채팅, 명령어, 실습 예제 |
-| [08](docs/08-운영-및-관리.md) | 운영 및 관리 | 백업, 모니터링, 업데이트 |
-| [09](docs/09-트러블슈팅.md) | 트러블슈팅 | 자주 발생하는 문제 해결 |
-| [10](docs/10-부록.md) | 부록 | 명령어 모음, 비용 계산, FAQ |
+| [01](docs/walkthrough/01-ec2-생성.md) | EC2 생성 | Terraform으로 EC2 프로비저닝 |
+| [02](docs/walkthrough/02-openclaw-설치.md) | OpenClaw 설치 | 설치, 온보딩, Slack 연동, 대시보드 |
+| [03](docs/walkthrough/03-대시보드-가이드.md) | 대시보드 가이드 | Control UI 8개 탭 상세 설명 |
+| [04](docs/walkthrough/04-운영-레퍼런스.md) | 운영 레퍼런스 | 명령어, 팁, 트러블슈팅, 비용, FAQ |
 
 ## 필요 사항
 
