@@ -1,1 +1,11 @@
 .claude/
+
+# Terraform
+terraform/.terraform/
+terraform/*.tfstate
+terraform/*.tfstate.backup
+terraform/.terraform.lock.hcl
+terraform/terraform.tfvars
+
+# Walkthrough logs (터미널 캡처 — 토큰 흔적 가능)
+docs/walkthrough/logs/

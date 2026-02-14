@@ -1,0 +1,9 @@
+# 실제 값을 넣어 terraform.tfvars로 복사하세요
+# cp terraform.tfvars.example terraform.tfvars
+
+# EC2 접속용 키 페어 이름 (AWS 콘솔에서 생성한 키 페어)
+key_name = "glen-openclaw"
+
+# 보안그룹에서 SSH(22), Gateway(18789) 접근을 허용할 내 공인 IP
+# 확인: curl -s ifconfig.me
+my_ip = "123.456.789.0"
