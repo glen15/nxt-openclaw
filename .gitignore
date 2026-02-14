@@ -1,5 +1,18 @@
-.claude/
+# OS
 .DS_Store
+Thumbs.db
+
+# IDE / Editor
+.claude/
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Node
+node_modules/
+npm-debug.log*
 
 # Terraform
 terraform/.terraform/
@@ -7,6 +20,12 @@ terraform/*.tfstate
 terraform/*.tfstate.backup
 terraform/.terraform.lock.hcl
 terraform/terraform.tfvars
+
+# Secrets / Credentials
+*.pem
+*.key
+.env
+.env.*
 
 # Walkthrough logs (터미널 캡처 — 토큰 흔적 가능)
 docs/walkthrough/logs/
