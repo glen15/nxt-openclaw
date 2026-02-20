@@ -21,16 +21,19 @@ EC2 환경에 [OpenClaw](https://openclaw.ai/)를 설치하고 사용하는 과�
 
 | 장 | 제목 | 내용 |
 |----|------|------|
-| [01](docs/walkthrough/01-ec2-생성.md) | EC2 생성 | Terraform으로 EC2 프로비저닝 |
+| [00](docs/walkthrough/00-핸즈온-지시문.md) | 핸즈온 지시문 | 콘솔 기반 EC2 + 개인 인증 + 개인 Slack 기준 |
+| [01](docs/walkthrough/01-ec2-생성.md) | EC2 생성 | Terraform으로 EC2 프로비저닝 (참고) |
 | [02](docs/walkthrough/02-openclaw-설치.md) | OpenClaw 설치 | 설치, 온보딩, Slack 연동, 대시보드 |
 | [03](docs/walkthrough/03-대시보드-가이드.md) | 대시보드 가이드 | Control UI 8개 탭 상세 설명 |
 | [04](docs/walkthrough/04-운영-레퍼런스.md) | 운영 레퍼런스 | 명령어, 팁, 트러블슈팅, 비용, FAQ |
+
+> 사내 핸즈온 과제는 `00-핸즈온-지시문.md`를 기준으로 진행합니다.
 
 ## 필요 사항
 
 - AWS 계정
 - Anthropic Claude Pro/Max 구독 ($20~$100/월)
-- 권장 EC2: t3.small (Ubuntu 22.04 LTS)
+- 핸즈온 기준 EC2: t3.small (Ubuntu 22.04 LTS, 서울 리전)
 
 ## 예상 비용
 
