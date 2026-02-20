@@ -11,6 +11,13 @@ terraform {
 
 provider "aws" {
   region = var.aws_region
+
+  default_tags {
+    tags = {
+      Project   = "nxt-openclaw"
+      ManagedBy = "terraform"
+    }
+  }
 }
 
 # ---------------------------------------------------
@@ -56,13 +63,13 @@ resource "aws_security_group" "openclaw" {
     cidr_blocks = ["${var.my_ip}/32"]
   }
 
-  # HTTPS
+  # HTTPS (Nginx 리버스 프록시 사용 시 필요 — 기본 설정에서는 SSH 터널 사용)
   ingress {
     description = "HTTPS"
     from_port   = 443
     to_port     = 443
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = ["${var.my_ip}/32"]
   }
 
   egress {
@@ -88,6 +95,11 @@ resource "aws_instance" "openclaw" {
   key_name               = var.key_name
   vpc_security_group_ids = [aws_security_group.openclaw.id]
 
+  metadata_options {
+    http_tokens   = "required"
+    http_endpoint = "enabled"
+  }
+
   # 인스턴스 생성 시 OpenClaw 자동 설치 (온보딩은 수동으로 진행)
   user_data = <<-EOF
     #!/bin/bash
@@ -98,6 +110,7 @@ resource "aws_instance" "openclaw" {
   root_block_device {
     volume_size = 30
     volume_type = "gp3"
+    encrypted   = true
   }
 
   tags = {

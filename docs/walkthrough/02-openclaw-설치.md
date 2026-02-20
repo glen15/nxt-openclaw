@@ -48,7 +48,7 @@
 ssh -i ~/.ssh/<키페어-이름>.pem ubuntu@<EC2_ELASTIC_IP>
 ```
 
-- 인스턴스: t3.medium, Ubuntu 22.04 LTS
+- 인스턴스: t3.small, Ubuntu 22.04 LTS
 - Elastic IP: <EC2_ELASTIC_IP>
 - EC2 생성 과정은 [01-ec2-생성.md](./01-ec2-생성.md) 참고
 
