@@ -7,6 +7,14 @@ terraform {
       version = "~> 5.0"
     }
   }
+
+  backend "s3" {
+    bucket         = "nxt-tfstate-730335373015"
+    key            = "nxt-openclaw/terraform.tfstate"
+    region         = "ap-northeast-2"
+    dynamodb_table = "tfstate-lock"
+    encrypt        = true
+  }
 }
 
 provider "aws" {
